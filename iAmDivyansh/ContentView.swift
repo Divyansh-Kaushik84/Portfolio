@@ -9,16 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationView{
+            VStack(alignment:.leading) {
+                Text("Hi")
+                Text("I Am Divyansh Kaushik\nA btech 4th year student")
+                Image("notFound")
+                    .resizable()
+                    .frame(
+                        height: UIScreen.main.bounds.height/4
+                    )
+                    .padding(20)
+                NavigationLink("NEXT", destination: realShowOfUI())
+                    .padding(.leading,150)
+                Spacer()
+                Text("\"Never judge a book by its cover\"").padding(.leading,50)
+
+            }          
+            .padding()
+            .navigationTitle("This is my Portfolio")
+        }                .navigationBarBackButtonHidden()
+
     }
 }
-
 #Preview {
     ContentView()
 }
