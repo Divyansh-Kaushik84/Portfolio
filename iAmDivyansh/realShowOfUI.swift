@@ -7,6 +7,7 @@ struct realShowOfUI: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var currentTrackIndex = 0
     @State private var gradientShift = 0.0
+    @State private var trigger = false
     
     let tracks = ["sunflower", "tumblrGirls", "winningSpeech", "ladyKiller"]
     
@@ -16,8 +17,31 @@ struct realShowOfUI: View {
                 Spacer()
 
                 HStack {
+                    Button(action: {
+                        trigger.toggle()
+                        audioPlayer?.pause()}) {
+                        Image(systemName: (playButton ? "" : "pause"))
+                            .resizable()
+                            .frame(width: playButton ? 0 : 20, height: playButton ? 0 : 20)
+                            .foregroundColor(.white)
+                            .font(.title2)
+                            .padding(.horizontal)
+                            .background(
+                                RoundedRectangle(cornerRadius: playButton ? 25 : 30, style: .continuous)
+                                    .frame(width: playButton ? 0 : 60, height: playButton ? 0 : 60)
+                                    .shadow(color: .black , radius: 10).opacity(0.7)
+                                    .foregroundColor(.black)
+                            )
+                    }
+                    .onAppear {
+                        withAnimation {
+                            gradientShift = 1
+                        }
+                    }
+
                     Spacer()
                     Button(action: {
+                        trigger.toggle()
                         if playButton {
                             playTrack()
                         } else {
@@ -36,7 +60,6 @@ struct realShowOfUI: View {
                                     .frame(width: playButton ? 50 : 60, height: playButton ? 50 : 60)
                                     .shadow(color: .black , radius: 10).opacity(0.7)
                                     .foregroundColor(.black)
-
                             )
                     }
                     .onAppear {
@@ -46,7 +69,7 @@ struct realShowOfUI: View {
                     }
 
                 }
-                .padding(.trailing, 25)
+                .padding(.horizontal, 25)
                 
                 Spacer()
                 
@@ -69,6 +92,7 @@ struct realShowOfUI: View {
                                 .stroke(lineWidth: 7)
                                 .frame(width: 285, height: 336)
                         }
+                    
                     Text("You really thought that was my portfolio...\n\n  Didn't You?")
                         .frame(width: 260, height: 340)
                         .bold()
@@ -82,30 +106,35 @@ struct realShowOfUI: View {
                 }
                 .edgesIgnoringSafeArea(.all)
                 
-                
-                NavigationLink("Shall WE?", destination: ContentView())
-                    .bold()
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .frame(width: 200, height: 75)
-                    .background(Color(hue: 0.649, saturation: 0.977, brightness: 0.172))
-                    .cornerRadius(30)
-                    .padding()
-                    .shadow(color: .black,radius: 5)
-                
+                VStack {
+                    Button(action: {
+                        trigger.toggle()
+                    }) {
+                        GlitchTextView("Shall WE?", trigger: trigger)
+                    }
+                }
+                .font(.system(size: 35, weight: .semibold))
+                .foregroundColor(.white)
+                .frame(width: 200, height: 75)
+                .background(Color(hue: 0.649, saturation: 0.977, brightness: 0.172))
+                .cornerRadius(30)
+                .padding()
+                .shadow(color: .black, radius: 5)
+                .onAppear {
+                    startGlitchEffect()
+                }
+
                 Spacer()
-                
                 Text("\" You are the best project you will ever work on. \"")
                     .multilineTextAlignment(.center)
                     .bold()
                     .font(.callout)
                     .foregroundColor(.white)
                 Spacer()
-
             }
             .background(
                 LinearGradient(
-                    gradient: Gradient(colors: [ Color(hue: 0.649, saturation: 0.977, brightness: 0.372) ]),
+                    gradient: Gradient(colors: [Color(hue: 0.649, saturation: 0.977, brightness: 0.372)]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -134,6 +163,34 @@ struct realShowOfUI: View {
         audioPlayer?.pause()
         currentTrackIndex = (currentTrackIndex + 1) % tracks.count
         playTrack()
+    }
+    
+    func startGlitchEffect() {
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+            trigger.toggle()
+        }
+    }
+    
+    @ViewBuilder
+    func GlitchTextView(_ text: String, trigger: Bool) -> some View {
+        ZStack {
+            GlitchText(text: text, trigger: trigger) {
+                LinearKeyframe(GlitchFrame(top: -5, center: 0, bottom: 0, shadowOpacity: 0.2), duration: 0.1)
+                LinearKeyframe(GlitchFrame(top: -5, center: -5, bottom: -5, shadowOpacity: 0.6), duration: 0.1)
+                LinearKeyframe(GlitchFrame(top: -5, center: -5, bottom: 5, shadowOpacity: 0.8), duration: 0.1)
+                LinearKeyframe(GlitchFrame(top: 5, center: 5, bottom: 5, shadowOpacity: 0.4), duration: 0.1)
+                LinearKeyframe(GlitchFrame(top: 5, center: 0, bottom: 5, shadowOpacity: 0.1), duration: 0.1)
+                LinearKeyframe(GlitchFrame(), duration: 0.1)
+            }
+            GlitchText(text: text, trigger: trigger, shadow: .green) {
+                LinearKeyframe(GlitchFrame(top: -10, center: 0, bottom: 0, shadowOpacity: 0.3), duration: 0.02)
+                LinearKeyframe(GlitchFrame(top: -10, center: -10, bottom: -10, shadowOpacity: 0.5), duration: 0.02)
+                LinearKeyframe(GlitchFrame(top: -10, center: -10, bottom: 10, shadowOpacity: 0.7), duration: 0.02)
+                LinearKeyframe(GlitchFrame(top: 10, center: 10, bottom: 10, shadowOpacity: 0.8), duration: 0.02)
+                LinearKeyframe(GlitchFrame(top: 10, center: 0, bottom: 10, shadowOpacity: 0.4), duration: 0.02)
+                LinearKeyframe(GlitchFrame(), duration: 0.02)
+            }
+        }
     }
 }
 

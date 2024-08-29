@@ -16,6 +16,8 @@
 		BB5543292C7721DC00487EBC /* winningSpeech.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BB5543242C7721DB00487EBC /* winningSpeech.mp3 */; };
 		BB55432A2C7721DC00487EBC /* tumblrGirls.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BB5543252C7721DC00487EBC /* tumblrGirls.mp3 */; };
 		BB55432C2C7721DC00487EBC /* sunflower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BB5543272C7721DC00487EBC /* sunflower.mp3 */; };
+		BB55432E2C774F2C00487EBC /* homeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB55432D2C774F2C00487EBC /* homeScreen.swift */; };
+		BB64C2CA2C7FDEAF00879041 /* GlitchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB64C2C92C7FDEAF00879041 /* GlitchText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		BB5543242C7721DB00487EBC /* winningSpeech.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winningSpeech.mp3; sourceTree = "<group>"; };
 		BB5543252C7721DC00487EBC /* tumblrGirls.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tumblrGirls.mp3; sourceTree = "<group>"; };
 		BB5543272C7721DC00487EBC /* sunflower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sunflower.mp3; sourceTree = "<group>"; };
+		BB55432D2C774F2C00487EBC /* homeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeScreen.swift; sourceTree = "<group>"; };
+		BB64C2C92C7FDEAF00879041 /* GlitchText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlitchText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5543202C771E9400487EBC /* Audio */,
+				BB64C2C82C7FDE9200879041 /* Helpers */,
 				BB55430B2C768C2E00487EBC /* iAmDivyansh */,
 				BB55430A2C768C2E00487EBC /* Products */,
 			);
@@ -65,6 +70,7 @@
 				BB55430C2C768C2E00487EBC /* iAmDivyanshApp.swift */,
 				BB55430E2C768C2E00487EBC /* ContentView.swift */,
 				BB5543212C77213E00487EBC /* realShowOfUI.swift */,
+				BB55432D2C774F2C00487EBC /* homeScreen.swift */,
 				BB5543102C768C2F00487EBC /* Assets.xcassets */,
 				BB5543122C768C2F00487EBC /* Preview Content */,
 			);
@@ -88,6 +94,14 @@
 				BB5543242C7721DB00487EBC /* winningSpeech.mp3 */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		BB64C2C82C7FDE9200879041 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BB64C2C92C7FDEAF00879041 /* GlitchText.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +178,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB64C2CA2C7FDEAF00879041 /* GlitchText.swift in Sources */,
+				BB55432E2C774F2C00487EBC /* homeScreen.swift in Sources */,
 				BB55430F2C768C2E00487EBC /* ContentView.swift in Sources */,
 				BB55430D2C768C2E00487EBC /* iAmDivyanshApp.swift in Sources */,
 				BB5543222C77213E00487EBC /* realShowOfUI.swift in Sources */,
